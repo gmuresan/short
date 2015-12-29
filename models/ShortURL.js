@@ -10,7 +10,7 @@ var options
   , Schema = mongoose.Schema
   , ObjectId = Schema.ObjectId;
 
-options = { 
+options = {
   versionKey : false
 };
 
@@ -20,6 +20,7 @@ ShortURLSchema = new Schema({
   hash       : { type : String, unique: true },
   hits       : { type : Number, default: 0 },
   data       : { type : Schema.Types.Mixed },
+  metrics    : { type : Schema.Types.Mixed },
   created_at : { type : Date, default: Date.now },
 }, options);
 

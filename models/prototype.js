@@ -13,6 +13,18 @@ exports.Model = function(mongooseModel) {
   this.baseModel = mongooseModel;
 };
 
+exports.Model.prototype.findOneAndUpdate = function(conditions, update, options) {
+  var promise = new Promise();
+  this.baseModel.findOneAndUpdate(conditions, update, options, function(error, result) {
+    if(error) {
+      promise.reject(error, true);
+    } else {
+      promise.resolve(result);
+    }
+  });
+  return promise;
+}
+
 /**
  * @method find
  * @description wraps mongodb find with a promise
