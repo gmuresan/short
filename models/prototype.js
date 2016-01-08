@@ -49,10 +49,13 @@ exports.Model.prototype.find = function(query, fields, options) {
 
 exports.Model.prototype.findOne = function(query, fields, options) {
   var promise = new Promise();
-  this.baseModel.findOne(query, fields, options, function(error, result) {
+  this.baseModel.findOne(query, fields, options).populate('metrics.total').exec(function(error, result) {
     if (error) {
+      console.log(error);
       promise.reject(error, true);
     } else {
+      console.log("FIND ONE");
+      console.log(result);
       promise.resolve(result);
     };
   });
