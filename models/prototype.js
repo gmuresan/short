@@ -3,7 +3,8 @@
  * @list dependencies
  */
 
-var Promise = require('node-promise').Promise;
+//var Promise = require('bluebird')
+var Promise = require('node-promise').Promise
 
 /**
  * @description wrapper for models to return promises versus executing immediately
