@@ -67,7 +67,7 @@
     "bluebird": "^3.1.1",
     "mongoose": "^4.3.4",
     "node-promise": "^0.5.12",
-    "short-id": "git+https://git@github.com/gmuresan/short-id"
+    "short-id": "0.1.0-1"
   },
   "devDependencies": {
     "vows": "0.7.0"
