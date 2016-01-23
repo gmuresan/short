@@ -16,6 +16,17 @@ options = {
   versionKey : false
 };
 
+HtmlAttributeSchema = new Schema({
+  key: {type: String},
+  value: {type: String, default:''}
+});
+
+HtmlElementSchema = new Schema({
+  tag: {type: String},
+  attributes: [HtmlAttributeSchema],
+  innerHtml: {type: String}
+});
+
 MetricsSchema = new Schema({
   timestamp: { type: Date, default: Date.now },
   clicks: { type: Number, default: 0 },
@@ -36,13 +47,9 @@ ShortURLSchema = new Schema({
   totalMetrics : { type : ObjectId, ref: 'Metrics'},
   dailyMetrics : [{type: ObjectId, ref: 'Metrics'}],
   hourlyMetrics: [{type: ObjectId, ref: 'Metrics'}],
-  /*
-  metrics    : {
-    total: MetricsSchema,
-    //daily: [{type: ObjectId, ref: 'Metrics'}],
-    //hourly: [{type: ObjectId, ref: 'Metrics'}]
-  },
-  */
+
+  headElements: [HtmlElementSchema]
+
 }, options);
 
 ShortURL = mongoose.model('ShortURL', ShortURLSchema);
@@ -73,6 +80,10 @@ ShortURL.findOrCreate = function(query, document, options) {
   });
 };
 
-exports.ShortURL = ShortURL;
 
+exports.ShortURL = ShortURL;
 exports.Metrics = mongoose.model('Metrics', MetricsSchema);
+exports.HtmlElement = mongoose.model('HtmlElement', HtmlElementSchema);
+exports.HtmlAttribute = mongoose.model('HtmlAttribute', HtmlAttributeSchema);
+
+
