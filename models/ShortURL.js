@@ -48,7 +48,8 @@ ShortURLSchema = new Schema({
   dailyMetrics : [{type: ObjectId, ref: 'Metrics'}],
   hourlyMetrics: [{type: ObjectId, ref: 'Metrics'}],
 
-  headElements: [HtmlElementSchema]
+  headElements: [HtmlElementSchema],
+  headAttributes: [HtmlAttributeSchema]
 
 }, options);
 
